@@ -1,0 +1,10 @@
+RewriteEngine on
+
+# Redirect www and HTTP to HTTPS
+RewriteCond %{HTTP_HOST} ^www\.kitabuswap\.com [OR]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://kitabuswap.com/$1 [R=301,L]
+
+# Ensure all requests are served from the public directory
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]

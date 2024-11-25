@@ -481,7 +481,7 @@
                                 <div>
 
                                     <p style="font-size:18px; margin-bottom:10px"><i class="fas fa-envelope"></i>
-                                        info@kitabuswap.co.ke &nbsp; |&nbsp; <i class="fas fa-phone"></i> +254738191413
+                                        info@kitabuswap.com &nbsp; |&nbsp; <i class="fas fa-phone"></i> +254728535001
                                         &nbsp;|
                                         &nbsp;
                                         <a href="">Terms &
