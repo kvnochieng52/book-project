@@ -24,11 +24,7 @@ Welcome Home
 
 
         <div class="card">
-
-            test
-
             @can('is_rider')
-
             @include('dashboard.rider.rider_dashboard')
             @elsecan('is_logistics_manager')
             @include('dashboard.logistics_manager.logistics_manager_dashboard')
