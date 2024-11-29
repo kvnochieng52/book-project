@@ -25,7 +25,7 @@ Welcome Home
 
         <div class="card">
 
-
+            test
 
             @can('is_rider')
 
