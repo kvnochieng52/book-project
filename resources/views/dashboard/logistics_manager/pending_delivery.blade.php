@@ -61,7 +61,7 @@ Dasgboard
 
                                     {{$order->delivery_address}}<br />
                                 </td>
-                                <td></td>
+                                <td>{{$order->delivery_rider_name}}</td>
                                 <td>
 
 

@@ -17,7 +17,8 @@ class Order extends Model
             ->leftJoin('book_editions', 'book_inventories.edition_id', 'book_editions.id')
             ->leftJoin('book_statuses', 'book_inventories.status_id', 'book_statuses.id')
             ->leftJoin('order_statuses', 'orders.order_status', 'order_statuses.id')
-            ->leftJoin('users', 'orders.user_id', 'users.id');
+            ->leftJoin('users AS ORDER_BY_USER_JOIN', 'orders.user_id', 'ORDER_BY_USER_JOIN.id')
+            ->leftJoin('users AS DELIVERY_RIDER_JOIN', 'orders.delivery_rider_id', 'DELIVERY_RIDER_JOIN.id');
     }
 
 
@@ -48,7 +49,8 @@ class Order extends Model
             'book_editions.edition_name',
             'order_statuses.order_status_name',
             'order_statuses.color_code AS order_status_color_code',
-            'users.name AS order_by_name'
+            'ORDER_BY_USER_JOIN.name AS order_by_name',
+            'DELIVERY_RIDER_JOIN.name AS delivery_rider_name'
         ]);
     }
 }

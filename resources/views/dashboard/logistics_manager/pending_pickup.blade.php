@@ -58,7 +58,7 @@ Dasgboard
 
                                     {{$book->address}}<br />
                                 </td>
-                                <td>Kevin Ochieng</td>
+                                <td>{{$book->collection_rider_name}}</td>
 
                                 <td>
 
