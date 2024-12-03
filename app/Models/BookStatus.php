@@ -14,4 +14,5 @@ class BookStatus extends Model
     const PENDING_DELIVERY = 3;
     const DELIVERED = 4;
     const CANCELLED = 5;
+    const APPROVED_NOT_COLLECTED = 6;
 }

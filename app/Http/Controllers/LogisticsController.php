@@ -47,7 +47,7 @@ class LogisticsController extends Controller
 
 
         return view('dashboard.logistics_manager.assign_collection')->with([
-            'statuses' => BookStatus::whereIn('id', [BookStatus::APPROVED, BookStatus::CANCELLED])->pluck('status_name', 'id'),
+            'statuses' => BookStatus::whereIn('id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED, BookStatus::CANCELLED])->pluck('status_name', 'id'),
             'drivers' => $drivers,
             'bookID' => $id
         ]);
