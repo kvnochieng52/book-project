@@ -61,6 +61,7 @@ class Book extends Model
     {
         return self::query()
             ->whereIn('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])
+            ->orderBy('books.id', 'DESC')
             ->paginate(8);
     }
 

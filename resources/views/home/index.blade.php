@@ -121,7 +121,7 @@ Welcome Home
                         <div class="col-md-12">
                             <hr />
 
-                            <h4>Recent Books2</h4>
+                            <h4>Recent Books</h4>
                         </div>
 
                         @foreach($books as $book)
