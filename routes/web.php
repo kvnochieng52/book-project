@@ -80,4 +80,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/update-delivery-status/{id}', [App\Http\Controllers\LogisticsController::class, 'updateDeliveryStatus'])->name('update-delivery');
         Route::post('/update-delivery-status-process', [App\Http\Controllers\LogisticsController::class, 'updateDeliveryStatusProcess'])->name('update-delivery-status-process');
     });
+
+
+
+
+    Route::prefix('reports')->group(function () {
+        Route::get('/index', [App\Http\Controllers\ReportController::class, 'index'])->name('report.index');
+        Route::get('/book-report', [App\Http\Controllers\ReportController::class, 'bookReport'])->name('report.book');
+        Route::get('/book-collection-report', [App\Http\Controllers\ReportController::class, 'collectionReportProcess'])->name('report.collectionReportProcess');
+    });
 });

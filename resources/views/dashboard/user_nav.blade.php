@@ -42,6 +42,14 @@
         </li>
 
 
+        @can('is_sales_manager')
+
+        <li class="nav-item">
+            <a class="nav-link btn btn-sm btn-secondary" href="/reports/index" style="border-radius: 0;"><strong><i
+                        class="fas fa-file"></i> Reports</strong></a>
+        </li>
+
+        @endcan
 
 
 

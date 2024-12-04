@@ -28,6 +28,8 @@ Welcome Home
             @include('dashboard.rider.rider_dashboard')
             @elsecan('is_logistics_manager')
             @include('dashboard.logistics_manager.logistics_manager_dashboard')
+            @elsecan('is_sales_manager')
+            @include('dashboard.sales_manager.sales_manager_dashboard')
             @else
             @include('dashboard.user_dashboard')
 

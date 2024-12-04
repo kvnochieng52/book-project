@@ -41,6 +41,7 @@ class Book extends Model
             'swap_statuses.color_code as swap_status_color_code',
             'book_editions.edition_name',
             'CREATED_BY_USER_JOIN.name as created_by_name',
+            'CREATED_BY_USER_JOIN.email as created_by_email',
             'COLLECTION_RIDER_USER_JOIN.name as collection_rider_name',
             'CREATED_BY_USER_JOIN.telephone as created_by_telephone',
         ])
