@@ -27,6 +27,7 @@ class BooksCollectionExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
+            "Book ID",
             "Book Name",
             "Level",
             "Submitted By",
@@ -46,6 +47,7 @@ class BooksCollectionExport implements FromCollection, WithHeadings, WithMapping
     {
 
         return [
+            $row->id,
             $row->book_name,
             $row->level_name,
             $row->created_by_name,
