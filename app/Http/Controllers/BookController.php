@@ -106,7 +106,7 @@ class BookController extends Controller
             'bookLevels' => BookLevel::where('is_active', 1)->pluck('level_name', 'id'),
             'bookEditions' => BookEdition::where('is_active', 1)->pluck('edition_name', 'id'),
             'bookConditions' => BookCondition::where('is_active', 1)->pluck('condition_name', 'id'),
-            'bookInventories' => BookInventory::pluck('book_name', 'id')
+            'bookInventories' => BookInventory::query()->pluck('book_with_level', 'id')
         ]);
     }
 
