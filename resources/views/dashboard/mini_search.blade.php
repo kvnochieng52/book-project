@@ -23,3 +23,22 @@ Welcome Home
 
 
 @endsection
+
+@section('css-scripts')
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+@endsection
+
+@section('js-scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+{{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
+
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    
+    });
+</script>
+
+@endsection

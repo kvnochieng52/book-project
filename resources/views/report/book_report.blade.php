@@ -10,9 +10,6 @@ Welcome Home
 
         @include('dashboard.user_nav')
 
-
-
-
         <div class="card">
             <div class="card-body">
                 {!! Form::open([
@@ -26,19 +23,19 @@ Welcome Home
                     <div class="col-md-4">
                         <div class="form-group">
                             {!! Form::label('from_date', 'From Date') !!}
-                            {!! Form::date('from_date', \Carbon\Carbon::now(), ['class' => 'form-control',
+                            {!! Form::text('from_date', \Carbon\Carbon::now()->format('d-m-Y'), ['class' =>
+                            'form-control datepicker',
                             'required'=>true]) !!}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             {!! Form::label('to_date', 'To Date') !!}
-                            {!! Form::date('to_date', \Carbon\Carbon::now(), ['class' =>
-                            'form-control','required'=>true]) !!}
+                            {!! Form::text('to_date', \Carbon\Carbon::now()->format('d-m-Y'), ['class' =>
+                            'form-control datepicker','required'=>true]) !!}
                         </div>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col-md-12">
@@ -50,9 +47,19 @@ Welcome Home
             </div>
         </div>
     </div>
-
 </div>
 
 
+@endsection
+
+
+@section('js-scripts')
+
+
+<script>
+    $(".datepicker").datepicker({
+        dateFormat: 'dd-mm-yy'
+    });
+</script>
 
 @endsection
