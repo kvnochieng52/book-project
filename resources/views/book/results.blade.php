@@ -76,10 +76,9 @@ Welcome Home
 
 @endsection
 
-
 @section('css-scripts')
-{{--
-<link href="dist/css/custom.css" rel="stylesheet"> --}}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 
 <style>
     .product-img img {
@@ -89,18 +88,30 @@ Welcome Home
         /* Adjust the max-height as needed */
         object-fit: cover;
     }
-</style>
 
+    /* @media (max-width: 768px) {
+        .product-plr-1 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .single-product-wrap {
+            margin-bottom: 30px;
+        }
+    } */
+</style>
 @endsection
 
-
 @section('js-scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 {{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
 
 <script>
     $(document).ready(function() {
+        $('.select2').select2();
+    
     });
-
 </script>
 
 @endsection
