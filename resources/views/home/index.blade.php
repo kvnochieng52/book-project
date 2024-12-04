@@ -125,22 +125,18 @@ Welcome Home
                         </div>
 
                         @foreach($books as $book)
-
-                        <div class="product-plr-1 col-md-3">
+                        <div class="product-plr-1 col-md-3 col-sm-6 col-12">
                             <div class="single-product-wrap mb-60">
                                 <div class="product-img product-img-zoom mb-15">
                                     <a href="/book/redeem/{{$book->id}}">
-                                        <img src="/{{$book->front_photo}}" alt="">
+                                        <img src="/{{$book->front_photo}}" alt="{{$book->book_name}}">
                                     </a>
-
                                 </div>
                                 <div class="product-content-wrap-3">
                                     <div class="product-content-categories">
                                         <a class="blue" href="/book/redeem/{{$book->id}}">{{$book->level_name}}</a>
                                     </div>
-                                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}} </a>
-                                    </h3>
-
+                                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}}</a></h3>
                                     <div class="product-price-4">
                                         <span>{{$book->required_points}} <span style="font-size: 12px"> points
                                                 required</span></span>
@@ -151,15 +147,12 @@ Welcome Home
                                     <div class="product-content-categories">
                                         <a class="blue" href="/book/redeem/{{$book->id}}">{{$book->level_name}}</a>
                                     </div>
-                                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}}</a>
-                                    </h3>
-
+                                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}}</a></h3>
                                     <div class="product-price-4">
                                         <span>{{$book->required_points}} <span style="font-size: 12px"> points
-                                                required</span> </span>
+                                                required</span></span>
                                     </div>
                                     <div class="pro-add-to-cart-2">
-
                                         <a href="/book/redeem/{{$book->id}}">
                                             <button title="Add to Cart">Get Book</button>
                                         </a>
@@ -167,8 +160,21 @@ Welcome Home
                                 </div>
                             </div>
                         </div>
+
+
                         @endforeach
 
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pagination-wrapper">
+                                {{ $books->links() }}
+                            </div>
+                        </div>
                     </div>
 
 
@@ -188,11 +194,19 @@ Welcome Home
 
 
 @section('css-scripts')
+
+
 {{--
 <link href="dist/css/custom.css" rel="stylesheet"> --}}
 
 <style>
-
+    .product-img img {
+        width: 100%;
+        height: auto;
+        max-height: 280px;
+        /* Adjust the max-height as needed */
+        object-fit: cover;
+    }
 </style>
 
 @endsection

@@ -66,7 +66,7 @@ Dasgboard
                                     <a href="/logistics/assign-collection/{{$book->id}}"
                                         class="btn btn-sm btn-success">ASSIGN</a>
                                     @endif
-                                    <a href="/rider-dashboard/update-status/{{$book->id}}"
+                                    <a href="/logistics/update-status/{{$book->id}}"
                                         class="btn btn-sm btn-info">Update</a>
                                 </td>
 
@@ -77,6 +77,16 @@ Dasgboard
 
                         </tbody>
                     </table>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pagination-wrapper">
+                            {{ $pendingPickupBooks->links() }}
+                        </div>
+                    </div>
                 </div>
 
             </div>

@@ -72,6 +72,14 @@ Dasgboard
                     </table>
                 </div>
 
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pagination-wrapper">
+                            {{ $pendingPickupBooks->links() }}
+                        </div>
+                    </div>
+                </div>
             </div>
 
 

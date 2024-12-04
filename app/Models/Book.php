@@ -72,22 +72,24 @@ class Book extends Model
 
     public static function getLatestBooks()
     {
-        return self::query()->where('books.status_id', BookStatus::APPROVED)->take(20)->get();
+        return self::query()
+            ->whereIn('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])
+            ->paginate(8);
     }
 
     public static function getBookByLevelID($levelID)
     {
-        return self::query()->where('books.status_id', BookStatus::APPROVED)->where('level_id', $levelID)->get();
+        return self::query()->wherein('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])->where('level_id', $levelID)->get();
     }
 
     public static function getRecentBooks()
     {
-        return self::query()->where('books.status_id', BookStatus::APPROVED)->orderBy('books.id', 'DESC')->get();
+        return self::query()->whereIn('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])->orderBy('books.id', 'DESC')->paginate(12);
     }
 
     public static function getPendingCollectionBooks()
     {
-        return self::query()->where('books.status_id', BookStatus::PENDING_PICKUP_APPROVAL)->get();
+        return self::query()->where('books.status_id', BookStatus::PENDING_PICKUP_APPROVAL)->paginate(20);
     }
 
     public static function getPendingDeliveryBooks()

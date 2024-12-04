@@ -82,7 +82,13 @@ Welcome Home
 <link href="dist/css/custom.css" rel="stylesheet"> --}}
 
 <style>
-
+    .product-img img {
+        width: 100%;
+        height: auto;
+        max-height: 280px;
+        /* Adjust the max-height as needed */
+        object-fit: cover;
+    }
 </style>
 
 @endsection

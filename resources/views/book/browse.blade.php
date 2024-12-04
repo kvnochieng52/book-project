@@ -52,6 +52,15 @@ Welcome Home
         </div>
         @endforeach
     </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pagination-wrapper">
+                {{ $books->links() }}
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -60,6 +69,27 @@ Welcome Home
 @section('css-scripts')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
+<style>
+    .product-img img {
+        width: 100%;
+        height: auto;
+        max-height: 280px;
+        /* Adjust the max-height as needed */
+        object-fit: cover;
+    }
+
+    /* @media (max-width: 768px) {
+        .product-plr-1 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .single-product-wrap {
+            margin-bottom: 30px;
+        }
+    } */
+</style>
 @endsection
 
 @section('js-scripts')

@@ -21,7 +21,7 @@ class RiderDashboardController extends Controller
         return view('dashboard.rider.pending_pickup')->with([
             'pendingPickupBooks' => Book::query()->where('books.status_id', BookStatus::PENDING_PICKUP_APPROVAL)
                 ->where('collection_rider_id', Auth::user()->id)
-                ->get(),
+                ->paginate(20),
         ]);
     }
 
@@ -75,7 +75,7 @@ class RiderDashboardController extends Controller
 
 
         return view('dashboard.rider.pending_delivery')->with([
-            'pendingPickupBooks' => Order::getPendingOrders(),
+            'pendingPickupBooks' => Order::getRiderPendingOrders(),
         ]);
     }
 
