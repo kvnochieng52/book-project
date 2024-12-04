@@ -28,6 +28,6 @@ class ReportController extends Controller
         return Excel::download(new BooksCollectionExport(
             $request['from_date'],
             $request['to_date'],
-        ), 'book_collections_report.csv');
+        ), 'book_submission_report.csv');
     }
 }
