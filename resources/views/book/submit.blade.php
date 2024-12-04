@@ -56,7 +56,7 @@ Welcome Home
                     </div>
                 </div>
 
-
+                {{--
                 <div class="row">
                     <div class="col-md-12">
                         {{ Form::label('level', 'Book Level') }}
@@ -66,7 +66,7 @@ Welcome Home
                         </div>
 
                     </div>
-                </div>
+                </div> --}}
 
 
                 {{-- <div class="row">

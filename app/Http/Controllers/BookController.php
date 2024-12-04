@@ -38,7 +38,7 @@ class BookController extends Controller
     {
         $this->validate($request, [
             'book_title' => 'required',
-            'level' => 'required',
+            // 'level' => 'required',
             // 'edition' => 'required',
             // 'front_photo' => 'required|mimes:png,jpg,jpeg',
             // 'back_photo' => 'required|mimes:png,jpg,jpeg',
