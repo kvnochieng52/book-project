@@ -54,7 +54,7 @@ Update Status
 
                 <button type="submit" class="btn btn-success"> ASSIGN</button>
                 &nbsp; &nbsp;
-                <a href="/rider-dashboard/pending-pickup" class="btn btn-default btn-outline">CLOSE</a>
+                {{-- <a href="/rider-dashboard/pending-pickup" class="btn btn-default btn-outline">CLOSE</a> --}}
 
                 <input type="hidden" name="orderID" value="{{$oredrID}}">
 

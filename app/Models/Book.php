@@ -9,20 +9,6 @@ class Book extends Model
 {
     use HasFactory;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static function query()
     {
 
@@ -80,21 +66,27 @@ class Book extends Model
 
     public static function getBookByLevelID($levelID)
     {
-        return self::query()->wherein('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])->where('level_id', $levelID)->get();
+        return self::query()->wherein('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])
+            ->where('level_id', $levelID)
+            ->get();
     }
 
     public static function getRecentBooks()
     {
-        return self::query()->whereIn('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])->orderBy('books.id', 'DESC')->paginate(12);
+        return self::query()->whereIn('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])
+            ->orderBy('books.id', 'DESC')
+            ->paginate(12);
     }
 
     public static function getPendingCollectionBooks()
     {
-        return self::query()->where('books.status_id', BookStatus::PENDING_PICKUP_APPROVAL)->paginate(20);
+        return self::query()->where('books.status_id', BookStatus::PENDING_PICKUP_APPROVAL)
+            ->paginate(20);
     }
 
     public static function getPendingDeliveryBooks()
     {
-        return self::query()->where('books.status_id', BookStatus::PENDING_DELIVERY)->get();
+        return self::query()->where('books.status_id', BookStatus::PENDING_DELIVERY)
+            ->get();
     }
 }
