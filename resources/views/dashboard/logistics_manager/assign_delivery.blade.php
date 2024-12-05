@@ -18,7 +18,7 @@ Update Status
             <div class="card-body">
 
                 {!! Form::open([
-                'action' => 'App\Http\Controllers\RiderDashboardController@updateDeliveryStatusProcess',
+                'action' => 'App\Http\Controllers\LogisticsController@updateDeliveryStatusProcess',
                 'method' => 'POST',
                 'class' => 'form candidate_form',
                 'enctype' => 'multipart/form-data',

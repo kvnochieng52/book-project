@@ -180,4 +180,35 @@ class LogisticsController extends Controller
 
         return redirect("/logistics/pending-pickup")->with('success', 'Book status updated');
     }
+
+
+
+    public function updateDeliveryStatusProcess(Request $request)
+    {
+
+        $this->validate($request, [
+            'driver' => 'required',
+        ]);
+
+        Order::where('id', $request['orderID'])->update([
+            // 'order_status' => $request['status'],
+            'delivery_rider_id' => $request['driver'],
+            'logistic_manager_notes' => $request['description'],
+            'updated_by' => Auth::user()->id,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            'order_status' => OrderStatus::PENDING
+        ]);
+
+
+
+        $book_id = Order::where('id', $request['orderID'])->first()->book_id;
+
+        Book::where('id', $book_id)->update([
+            'status_id' => BookStatus::PENDING_DELIVERY,
+            'updated_by' => Auth::user()->id,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        return redirect("/logistics/pending-delivery")->with('success', 'Book status updated');
+    }
 }

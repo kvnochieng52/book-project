@@ -68,7 +68,7 @@ Dasgboard
                                     <a href="/logistics/assign-delivery/{{$order->id}}"
                                         class="btn btn-sm btn-success">ASSIGN</a>
 
-                                    <a href="/rider-dashboard/update-delivery-status/{{$order->id}}"
+                                    <a href="/logistic-dashboard/update-delivery-status/{{$order->id}}"
                                         class="btn btn-sm btn-info">Update</a>
                                 </td>
 
