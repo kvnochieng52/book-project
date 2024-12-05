@@ -106,6 +106,7 @@ Welcome Home
         </div>
     </div>
 </div>
+</div>
 
 <div class="container">
     <div class="row">
@@ -114,6 +115,30 @@ Welcome Home
             <div class="product-area pb-115">
 
                 <div class="tab-content jump">
+
+                    {{-- <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="nav-pills-wrapper">
+                                <ul class="nav nav-pills">
+
+
+                                    @php $bookLevels=App\Models\BookLevel::getBookLevels() @endphp
+
+                                    @foreach($bookLevels as $level)
+
+
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#pill1" data-toggle="pill">{{$level}}</a>
+                                    </li>
+
+                                    @endforeach
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div> --}}
 
 
                     <div class="row">
@@ -203,9 +228,36 @@ Welcome Home
     .product-img img {
         width: 100%;
         height: auto;
-        max-height: 280px;
+        max-height: 270px;
         /* Adjust the max-height as needed */
         object-fit: cover;
+    }
+
+
+    .nav-pills .nav-link {
+        border: 2px solid green;
+        /* Green border outline */
+        color: green;
+        border-radius: 20px;
+        /* More rounded corners */
+        margin-right: 10px;
+        /* Add margin between pills */
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .nav-link:hover {
+        background-color: green;
+        color: white;
+    }
+
+    .nav-pills-wrapper {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .nav-item {
+        display: inline-block;
     }
 </style>
 
@@ -213,11 +265,10 @@ Welcome Home
 
 
 @section('js-scripts')
-{{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
+
 
 <script>
-    $(document).ready(function() {
-    });
+    $(document).ready(function() {});
 
 </script>
 
