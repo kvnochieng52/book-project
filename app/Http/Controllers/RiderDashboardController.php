@@ -111,7 +111,7 @@ class RiderDashboardController extends Controller
 
 
 
-        $status = $request['status'] == OrderStatus::DELIVERED ? BookStatus::DELIVERED : BookStatus::CANCELLED;
+        $status = $request['status'] == OrderStatus::DELIVERED ? BookStatus::DELIVERED : BookStatus::APPROVED;
         $swap_status = $request['status'] == OrderStatus::DELIVERED ? SwapStatus::SWAPPED : SwapStatus::NOT_YET_SWAPPED;
 
 
@@ -121,6 +121,7 @@ class RiderDashboardController extends Controller
             'updated_by' => Auth::user()->id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
+
 
         return redirect("/rider-dashboard/pending-delivery")->with('success', 'Book status updated');
     }
