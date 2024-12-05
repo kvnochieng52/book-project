@@ -88,7 +88,8 @@ Welcome Home
                                 <input type="hidden" id="longitude" name="longitude">
                                 <input type="hidden" id="coordinates" name="coordinates">
 
-                                {{ Form::label('address', 'Specify Full Address') }}
+                                {{ Form::label('address', 'Specify Full Address including Plot/Appartment Name or No,
+                                floor No & House No') }}
                                 <div class="form-group">
                                     {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' =>
                                     'Enter your full address', 'style'=>'height:80px','required'=>'required']) }}
