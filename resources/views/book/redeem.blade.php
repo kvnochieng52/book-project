@@ -140,7 +140,9 @@ Welcome Home
 {{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initMap" async defer></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1p4HNRQsVDYRlXzTaXXAhJiIDU895JyE&libraries=places&callback=initMap"
+    async defer></script>
 
 <script>
     <?php
