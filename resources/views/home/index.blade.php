@@ -150,11 +150,15 @@ Welcome Home
                         </div>
 
                         @foreach($books as $book)
+                        @php
+                        $photoPath = public_path($book->front_photo);
+                        $photoUrl = file_exists($photoPath) ? asset($book->front_photo) : asset('images/no_image.png');
+                        @endphp
                         <div class="product-plr-1 col-md-3 col-sm-6 col-12">
                             <div class="single-product-wrap mb-60">
                                 <div class="product-img product-img-zoom mb-15">
                                     <a href="/book/redeem/{{$book->id}}">
-                                        <img src="/{{$book->front_photo}}" alt="{{$book->book_name}}">
+                                        <img src="{{$photoUrl}}" alt="{{$book->book_name}}">
                                     </a>
                                 </div>
                                 <div class="product-content-wrap-3">
@@ -185,8 +189,6 @@ Welcome Home
                                 </div>
                             </div>
                         </div>
-
-
                         @endforeach
 
 

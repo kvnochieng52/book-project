@@ -15,8 +15,14 @@ Welcome Home
 
                 <div style="border: 1px solid #d6d2d2; border-radius:8px; padding:10px">
                     <div class="row">
+
+
+                        @php
+                        $photoPath = public_path($book->front_photo);
+                        $photoUrl = file_exists($photoPath) ? asset($book->front_photo) : asset('images/no_image.png');
+                        @endphp
                         <div class="col-md-4">
-                            <img src="/{{$book->front_photo}}" alt="" style="width:100%">
+                            <img src="{{$photoUrl}}" alt="" style="width:100%">
                         </div>
 
                         <div class="col-md-8">

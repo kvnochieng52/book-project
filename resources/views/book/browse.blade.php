@@ -9,40 +9,35 @@ Welcome Home
     @include('book._search_form')
     <div class="row mt-20">
         @foreach($books as $book)
-
-        <div class="product-plr-1 col-md-3">
+        @php
+        $photoPath = public_path($book->front_photo);
+        $photoUrl = file_exists($photoPath) ? asset($book->front_photo) : asset('images/no_image.png');
+        @endphp
+        <div class="product-plr-1 col-md-3 col-sm-6 col-12">
             <div class="single-product-wrap mb-60">
                 <div class="product-img product-img-zoom mb-15">
                     <a href="/book/redeem/{{$book->id}}">
-                        <img src="/{{$book->front_photo}}" alt="">
+                        <img src="{{$photoUrl}}" alt="{{$book->book_name}}">
                     </a>
-
                 </div>
                 <div class="product-content-wrap-3">
                     <div class="product-content-categories">
                         <a class="blue" href="/book/redeem/{{$book->id}}">{{$book->level_name}}</a>
                     </div>
-                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}} </a>
-                    </h3>
-
+                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}}</a></h3>
                     <div class="product-price-4">
-                        <span>{{$book->required_points}} <span style="font-size: 12px"> points
-                                required</span></span>
+                        <span>{{$book->required_points}} <span style="font-size: 12px"> points required</span></span>
                     </div>
                 </div>
                 <div class="product-content-wrap-3 product-content-position-2 pro-position-2-padding-dec">
                     <div class="product-content-categories">
                         <a class="blue" href="/book/redeem/{{$book->id}}">{{$book->level_name}}</a>
                     </div>
-                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}}</a>
-                    </h3>
-
+                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}}</a></h3>
                     <div class="product-price-4">
-                        <span>{{$book->required_points}} <span style="font-size: 12px"> points
-                                required</span> </span>
+                        <span>{{$book->required_points}} <span style="font-size: 12px"> points required</span></span>
                     </div>
                     <div class="pro-add-to-cart-2">
-
                         <a href="/book/redeem/{{$book->id}}">
                             <button title="Add to Cart">Get Book</button>
                         </a>
