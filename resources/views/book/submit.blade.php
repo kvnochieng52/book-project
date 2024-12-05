@@ -197,9 +197,7 @@ Welcome Home
 {{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
 
 
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBP_0fcfVMUL_4vQmkOa1dKjJJslcVUJ44&libraries=places&callback=initMap"
-    async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initMap" async defer></script>
 
 
 
