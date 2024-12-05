@@ -43,7 +43,7 @@ Welcome Home
                             @if(App\Models\UserBookPoint::getUserPoints() >= $book->required_points)
 
                             <p>You have enough points to get this book <br />Please note you shall be required to pay
-                                KES 2O
+                                KES 50
                                 prosessing fees</p>
                             @else
 
