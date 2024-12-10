@@ -135,7 +135,7 @@ Welcome Home
 @section('css-scripts')
 {{--
 <link href="dist/css/custom.css" rel="stylesheet"> --}}
-
+<link rel="stylesheet" href="/css/validator/bootstrapValidator.min.css" />
 <style>
 
 </style>
@@ -145,7 +145,7 @@ Welcome Home
 
 @section('js-scripts')
 {{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
-<link rel="stylesheet" href="/css/validator/bootstrapValidator.min.css" />
+
 <script src="/js/validator/bootstrapValidator.min.js"></script>
 
 
