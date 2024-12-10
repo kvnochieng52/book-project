@@ -138,7 +138,7 @@ Welcome Home
 <link rel="stylesheet" href="/css/validator/bootstrapValidator.min.css" />
 <style>
     .has-error .help-block {
-        color: #a94442 !important;
+        color: red !important;
     }
 </style>
 

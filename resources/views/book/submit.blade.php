@@ -193,7 +193,7 @@ Welcome Home
 
 <style>
     .has-error .help-block {
-        color: #a94442 !important;
+        color: red !important;
     }
 </style>
 @endsection
