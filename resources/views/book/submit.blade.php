@@ -190,6 +190,12 @@ Welcome Home
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 <link rel="stylesheet" href="/css/validator/bootstrapValidator.min.css" />
+
+<style>
+    .has-error .help-block {
+        color: #a94442 !important;
+    }
+</style>
 @endsection
 
 @section('js-scripts')
