@@ -20884,3 +20884,8 @@ h3.cart-page-title {
   padding: 8px;
   border-radius: 8px;
 }
+
+
+.has-error .help-block {
+  color: #a94442 !important;
+}
