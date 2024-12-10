@@ -33,6 +33,6 @@
     z-index: 100
 }
 
-.has-error {
-    color: #a94442;
+.has-error .help-block {
+    color: #a94442 !important;
 }
