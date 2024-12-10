@@ -32,7 +32,7 @@ Update Status
                         {{ Form::label('status', 'Status') }}
                         <div class="form-group">
                             {{ Form::select('status', $statuses, null, ['class' => 'form-control',
-                            'placeholder'=>'--Select the order Status--']) }}
+                            'placeholder'=>'--Select the order Status--', 'required'=>true]) }}
                         </div>
 
                     </div>
@@ -69,6 +69,44 @@ Update Status
 
 </div>
 
+
+
+@endsection
+
+
+@section('css-scripts')
+{{--
+<link href="dist/css/custom.css" rel="stylesheet"> --}}
+<link rel="stylesheet" href="/css/validator/bootstrapValidator.min.css" />
+<style>
+    .has-error .help-block {
+        color: red !important;
+    }
+</style>
+
+@endsection
+
+
+@section('js-scripts')
+{{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
+
+<script src="/js/validator/bootstrapValidator.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+          $('.user_form')
+                .bootstrapValidator({
+                    excluded: [':disabled'],
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                });
+    })
+
+</script>
 
 
 @endsection
