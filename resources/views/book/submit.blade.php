@@ -22,7 +22,7 @@ Welcome Home
                 {!! Form::open([
                 'action' => 'App\Http\Controllers\BookController@storeBook',
                 'method' => 'POST',
-                'class' => 'form candidate_form',
+                'class' => 'form user_form',
                 'enctype' => 'multipart/form-data',
                 ]) !!}
 
@@ -189,6 +189,7 @@ Welcome Home
 @section('css-scripts')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+<link rel="stylesheet" href="/css/validator/bootstrapValidator.min.css" />
 @endsection
 
 @section('js-scripts')
@@ -200,6 +201,9 @@ Welcome Home
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1p4HNRQsVDYRlXzTaXXAhJiIDU895JyE&libraries=places&callback=initMap"
     async defer></script>
+
+
+<script src="/js/validator/bootstrapValidator.min.js"></script>
 
 
 
@@ -350,6 +354,16 @@ Welcome Home
             });
         }
     $(document).ready(function() {
+
+          $('.user_form')
+                .bootstrapValidator({
+                    excluded: [':disabled'],
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                });
 
         $('#book_title').select2();
         $('#level').select2();

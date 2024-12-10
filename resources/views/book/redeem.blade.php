@@ -68,7 +68,7 @@ Welcome Home
                     {!! Form::open([
                     'action' => 'App\Http\Controllers\BookController@redeemProcess',
                     'method' => 'POST',
-                    'class' => 'form candidate_form',
+                    'class' => 'form user_form',
                     'enctype' => 'multipart/form-data',
                     ]) !!}
 
@@ -145,6 +145,8 @@ Welcome Home
 
 @section('js-scripts')
 {{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
+<link rel="stylesheet" href="/css/validator/bootstrapValidator.min.css" />
+<script src="/js/validator/bootstrapValidator.min.js"></script>
 
 
 <script
@@ -297,6 +299,21 @@ Welcome Home
                 });
             });
         }
+
+
+        
+    $(document).ready(function() {
+
+          $('.user_form')
+                .bootstrapValidator({
+                    excluded: [':disabled'],
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                });
+    })
 </script>
 
 @endsection
