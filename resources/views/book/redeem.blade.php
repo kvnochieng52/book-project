@@ -82,8 +82,7 @@ Welcome Home
 
                             <h3>Delivery Location</h3>
                             <p>Please specify the delivery Location for the book</p>
-                            <input type="text" name="autocomplete" id="autocomplete" class="form-control"
-                                required><br />
+                            <input type="text" name="autocomplete" id="autocomplete" class="form-control"><br />
                             <div id="mapping" style="width: 100%; height:370px">Map</div>
 
 

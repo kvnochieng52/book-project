@@ -110,7 +110,7 @@ Welcome Home
                     <div class="col-md-6">
                         <p><strong>Collection Location</strong> (Specify your location on where the book shall be
                             collected)</p>
-                        <input type="text" name="autocomplete" id="autocomplete" class="form-control" required>
+                        <input type="text" name="autocomplete" id="autocomplete" class="form-control">
 
                         <div id="mapping" style="width: 100%; height:370px">Map</div>
 
