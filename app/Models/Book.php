@@ -62,7 +62,7 @@ class Book extends Model
         return self::query()
             ->whereIn('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])
             ->orderBy('books.id', 'DESC')
-            ->paginate(8);
+            ->paginate(30);
     }
 
     public static function getBookByLevelID($levelID)
@@ -76,13 +76,13 @@ class Book extends Model
     {
         return self::query()->whereIn('books.status_id', [BookStatus::APPROVED, BookStatus::APPROVED_NOT_COLLECTED])
             ->orderBy('books.id', 'DESC')
-            ->paginate(12);
+            ->paginate(30);
     }
 
     public static function getPendingCollectionBooks()
     {
         return self::query()->where('books.status_id', BookStatus::PENDING_PICKUP_APPROVAL)
-            ->paginate(20);
+            ->paginate(30);
     }
 
     public static function getPendingDeliveryBooks()
