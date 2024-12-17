@@ -298,6 +298,13 @@ Welcome Home
         color: red !important;
     }
 
+
+    input {
+
+        height: unset !important;
+        width: unset !important;
+    }
+
     .dz-container {
         border: 2px dashed #007bff;
         padding: 20px;
