@@ -29,6 +29,7 @@ class BooksCollectionExport implements FromCollection, WithHeadings, WithMapping
         return [
             "Book ID",
             "Book Name",
+            "Exchange Books",
             "Level",
             "Submitted By",
             "Date/Time",
@@ -49,7 +50,8 @@ class BooksCollectionExport implements FromCollection, WithHeadings, WithMapping
 
         return [
             $row->id,
-            $row->book_name,
+            $row->book_title,
+            $row->exchange_books,
             $row->level_name,
             $row->created_by_name,
             Carbon::parse($row->created_at)->format('Y-m-d H:i:s'),

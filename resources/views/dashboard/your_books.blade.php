@@ -19,7 +19,8 @@ Welcome Home
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Photo</th>
                                 <th>Book Name</th>
                                 <th>Level</th>
@@ -32,10 +33,11 @@ Welcome Home
                             @foreach ($books as $key=>$book)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td><img src="/{{$book->front_photo}}" alt="Thumbnail 1" class="img-thumbnail"
+                                <td>{{$book->id}}</td>
+                                <td><img src="/{{$book->front_image}}" alt="Thumbnail 1" class="img-thumbnail"
                                         width="60">
                                 </td>
-                                <td>{{$book->book_name}}
+                                <td>{{$book->book_title}}
                                     <br />
                                     <span class="badge bg-{{$book->status_color_code}}">
                                         {{$book->status_name}}

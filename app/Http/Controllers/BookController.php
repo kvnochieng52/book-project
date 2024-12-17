@@ -15,6 +15,8 @@ use App\Models\UserBookPoint;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -36,54 +38,95 @@ class BookController extends Controller
 
     public function storeBook(Request $request)
     {
-        $this->validate($request, [
-            'book_title' => 'required',
-            // 'level' => 'required',
-            // 'edition' => 'required',
-            // 'front_photo' => 'required|mimes:png,jpg,jpeg',
-            // 'back_photo' => 'required|mimes:png,jpg,jpeg',
-        ]);
+
+
+        $bookNotInListCheckbox = $request['book_not_in_list_checkbox'];
+        if ($bookNotInListCheckbox == 1) {
+
+            $this->validate($request, [
+
+                'condition' => 'required',
+                'address' => 'required',
+                'front_image' => 'required',
+                'exchange_books' => 'required',
+
+            ]);
 
 
 
-        // if (!empty($request['book_id'])) {
-        // if ($request->hasFile('front_photo') && $request->file('front_photo')->isValid()) {
-        //     $photo_file = $request->file('front_photo');
-        //     $photo_file_name = Str::random(30) . '.' . $photo_file->getClientOriginalExtension();
-        //     $photo_file->move('uploads/photos/', $photo_file_name);
-        //     $front_photo = 'uploads/photos/' . $photo_file_name;
-        // }
+
+            Book::insert([
+                'status_id' => BookStatus::PENDING_PICKUP_APPROVAL,
+                'swap_status_id' => SwapStatus::NOT_YET_SWAPPED,
+                // 'front_photo' => $front_photo,
+                // 'back_photo' => $back_photo,
+                'book_points' => 2,
+                'description' => $request['description'],
+                'maps_address' => $request['autocomplete'],
+                'latitude' => $request['latitude'],
+                'longitude' => $request['longitude'],
+                'coordinates' => $request['coordinates'],
+                'address' => $request['address'],
+                'telephone' => $request['telephone'],
+                'created_by' => Auth::user()->id,
+                'updated_by' => Auth::user()->id,
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
+
+                'book_title' => $request['uploadBookTitle'],
+                'manual_upload' => 1,
+                'front_image' => $request['front_image'],
+                'exchange_books' => $request['exchange_books'],
+                'book_level_id' => $request['level'],
+                'condition_id' => $request['condition'],
 
 
-        // if ($request->hasFile('back_photo') && $request->file('back_photo')->isValid()) {
-        //     $photo_file = $request->file('back_photo');
-        //     $photo_file_name = Str::random(30) . '.' . $photo_file->getClientOriginalExtension();
-        //     $photo_file->move('uploads/photos/', $photo_file_name);
-        //     $back_photo = 'uploads/photos/' . $photo_file_name;
-        // }
+            ]);
+        } else {
 
 
-        $RequiredPoints = BookInventory::where('id', $request['book_title'])->first()->required_points;
+            $this->validate($request, [
+                'book_title' => 'required',
+                'condition' => 'required',
+                'address' => 'required',
+                'exchange_books' => 'required',
 
-        Book::insert([
-            'book_id' => $request['book_title'],
-            'status_id' => BookStatus::PENDING_PICKUP_APPROVAL,
-            'swap_status_id' => SwapStatus::NOT_YET_SWAPPED,
-            // 'front_photo' => $front_photo,
-            // 'back_photo' => $back_photo,
-            'book_points' => $RequiredPoints,
-            'description' => $request['description'],
-            'maps_address' => $request['autocomplete'],
-            'latitude' => $request['latitude'],
-            'longitude' => $request['longitude'],
-            'coordinates' => $request['coordinates'],
-            'address' => $request['address'],
-            'telephone' => $request['telephone'],
-            'created_by' => Auth::user()->id,
-            'updated_by' => Auth::user()->id,
-            'created_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString(),
-        ]);
+            ]);
+
+
+            $RequiredPoints = BookInventory::where('id', $request['book_title'])->first()->required_points;
+
+            $bookDetails = BookInventory::where('id', $request['book_title'])->first();
+
+
+            Book::insert([
+                'book_id' => $request['book_title'],
+                'status_id' => BookStatus::PENDING_PICKUP_APPROVAL,
+                'swap_status_id' => SwapStatus::NOT_YET_SWAPPED,
+                // 'front_photo' => $front_photo,
+                // 'back_photo' => $back_photo,
+                'book_points' => $RequiredPoints,
+                'description' => $request['description'],
+                'maps_address' => $request['autocomplete'],
+                'latitude' => $request['latitude'],
+                'longitude' => $request['longitude'],
+                'coordinates' => $request['coordinates'],
+                'address' => $request['address'],
+                'telephone' => $request['telephone'],
+                'created_by' => Auth::user()->id,
+                'updated_by' => Auth::user()->id,
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
+
+                'book_title' => $bookDetails->book_name,
+                'manual_upload' => 0,
+                'front_image' => $bookDetails->front_photo,
+                'exchange_books' => $request['exchange_books'],
+                'book_level_id' => $bookDetails->level_id,
+                'condition_id' => $request['condition'],
+
+            ]);
+        }
 
         // $accumulatedPoints = UserBookPoint::where('user_id', Auth::user()->id)->first()->points + $RequiredPoints;
 
@@ -236,5 +279,51 @@ class BookController extends Controller
         return view('book.results')->with([
             'books' => $data,
         ]);
+    }
+
+
+
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480', // Accepting image files up to 20MB
+        ]);
+
+        // Get the uploaded file
+        $file = $request->file('file');
+
+        // Generate a random filename and get the file extension
+        $randomFilename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+        // Define the destination path
+        $destinationPath = public_path('manual_uploads');
+
+        // Move the file to the destination path
+        $file->move($destinationPath, $randomFilename);
+
+        // Generate the relative file path
+        $relativeFilePath = 'manual_uploads/' . $randomFilename;
+
+        return response()->json([
+            'message' => 'Image uploaded successfully!',
+            'file_path' => $relativeFilePath,
+        ]);
+    }
+
+
+
+    public function updateBooks(Request $request)
+    {
+        $books = Book::where('book_title', null)->get();
+        foreach ($books as $book) {
+            $bookDetails = BookInventory::where('id', $book->book_id)->first();
+            Book::where('id', $book->id)->update([
+                'book_title' => $bookDetails->book_name,
+                'front_image' => $bookDetails->front_photo,
+                'book_level_id' => $bookDetails->level_id,
+            ]);
+
+            echo $book->book_id . " ----- " . $bookDetails->book_name . "<br/>";
+        }
     }
 }

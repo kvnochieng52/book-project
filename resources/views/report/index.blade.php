@@ -8,7 +8,9 @@ Welcome Home
 <div class="row">
     <div class="col-md-12">
 
-        @include('dashboard.user_nav')
+        {{-- @include('dashboard.user_nav') --}}
+
+        @include('dashboard.logistics_manager.logistics_manager_nav')
 
 
 

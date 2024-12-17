@@ -22,6 +22,7 @@ Dasgboard
                             <tr>
                                 <th>#</th>
                                 <th>Order No.</th>
+                                <th>Book ID</th>
                                 <th>Photo</th>
                                 <th>Book Name</th>
                                 <th>Level</th>
@@ -37,19 +38,23 @@ Dasgboard
                             @foreach ($pendingPickupBooks as $key=>$order)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>#{{$order->id}}</td>
+                                <td>{{$order->id}} </td>
+                                <td>{{$order->book_id}} </td>
                                 <td>
-
-
-                                    <img src="/{{$order->front_photo}}" alt="Thumbnail 1" class="img-thumbnail"
-                                        width="60">
+                                    <img src="/{{$order->front_image}}" alt="Thumbnail 1" class="img-thumbnail"
+                                        width="60" />
                                 </td>
-                                <td>{{$order->book_name}}
+
+                                <td>{{$order->book_title}}
                                     <br />
                                     <span class="badge bg-{{$order->order_status_color_code}}">
                                         {{$order->order_status_name}}
                                     </span>
                                 </td>
+
+
+
+
                                 <td>{{$order->level_name}}</td>
                                 <td>{{$order->order_by_name}}</td>
                                 <td>{{$order->delivery_telephone}}</td>

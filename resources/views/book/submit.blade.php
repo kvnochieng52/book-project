@@ -44,29 +44,95 @@ Welcome Home
 
                 </div> --}}
 
+                <h4 class="text-primary">Upload your Book</h4>
 
-                <div class="row">
+
+                <div class="row inventories_select">
                     <div class="col-md-12">
                         {{ Form::label('book_title', 'Book Title') }}
                         <div class="form-group">
                             {{ Form::select('book_title', $bookInventories, null, ['class' => 'form-control',
-                            'placeholder'=>'--Select Book Title--', 'style'=>'width:100%', 'required'=>'required']) }}
+                            'placeholder'=>'--Select Book Title--', 'style'=>'width:100%'])
+                            }}
                         </div>
 
                     </div>
                 </div>
 
-                {{--
                 <div class="row">
                     <div class="col-md-12">
-                        {{ Form::label('level', 'Book Level') }}
-                        <div class="form-group">
-                            {{ Form::select('level', $bookLevels, null, ['class' => 'form-control',
-                            'placeholder'=>'--Please select level--','style'=>'width:100%', 'required'=>'required']) }}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="book_not_in_list_checkbox"
+                                id="bookNotInListCheckbox" value="1">
+                            <label class="form-check-label" for="bookNotInListCheckbox">
+                                <strong>My book is not in the list Above (click me to enter your title)</strong>
+                            </label>
                         </div>
+                    </div>
+                </div>
 
+                {{-- <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="photoUpload">Upload Photo</label>
+                                <input type="file" class="form-control-file" id="photoUpload" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="photoPreview">Photo Preview</label>
+                                <img id="photoPreview" src="#" alt="Your Image" class="img-preview"
+                                    style="display: none;">
+                            </div>
+                        </div>
                     </div>
                 </div> --}}
+
+
+
+                <div class="container mt-4 manual_upload" style="display: none">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="dropzoneDiv" class="dz-container">
+                                Upload Book front photo
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="uploadBookTitle">Enter Book Title Here</label>
+                                        <input type="text" class="form-control" id="uploadBookTitle"
+                                            id="uploadBookTitle" placeholder="Enter The Book Title"
+                                            name="uploadBookTitle">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ Form::label('level', 'Book Level') }}
+                                    <div class="form-group">
+                                        {{ Form::select('level', $bookLevels, null, ['class' => 'form-control',
+                                        'placeholder'=>'--Please select level--','style'=>'width:100%',
+                                        ]) }}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="front_image" id="chosen_path">
+                </div>
+
+
+
+
+
+
+
 
 
                 {{-- <div class="row">
@@ -80,17 +146,22 @@ Welcome Home
                     </div>
                 </div> --}}
 
+
                 <div class="row">
                     <div class="col-md-12">
                         {{ Form::label('condition', 'Condition') }}
                         <div class="form-group">
                             {{ Form::select('condition', $bookConditions, null, ['class' => 'form-control',
-                            'placeholder'=>'--Please select condition--','style'=>'width:100%', 'required'=>'required'])
+                            'placeholder'=>'--Please select condition--','style'=>'width:100%',
+                            'required'=>'required'])
                             }}
                         </div>
 
                     </div>
                 </div>
+
+
+
 
                 <div class="row">
 
@@ -106,9 +177,37 @@ Welcome Home
                 </div>
 
 
+                <hr />
+
+
+                <h4 class="text-primary">Book for Exchange</h4>
+                <p>Specify the books you want to exchange comma separated, Include the book Title and Level</p>
+
+
+                <div class="row">
+
+
+                    <div class="col-md-12">
+
+                        {{ Form::label('exchange_books', 'Exchange Books') }}
+                        <div class="form-group">
+                            {{ Form::textarea('exchange_books', null, ['class' => 'form-control', 'placeholder' =>
+                            'Enter the Exchange Books, comma separated', 'style'=>'height:90px']) }}
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+                <hr />
+
+
                 <div class="row" style="padding-bottom: 10px">
                     <div class="col-md-6">
-                        <p><strong>Collection Location</strong> (Specify your location on where the book shall be
+                        <p><strong>Collection Location</strong> (Specify your location on where the book shall
+                            be
                             collected)</p>
                         <input type="text" name="autocomplete" id="autocomplete" class="form-control">
 
@@ -122,7 +221,8 @@ Welcome Home
                             <input type="hidden" id="longitude" name="longitude">
                             <input type="hidden" id="coordinates" name="coordinates">
 
-                            {{ Form::label('address', 'Specify Full Address including Plot/Appartment Name or No, floor
+                            {{ Form::label('address', 'Specify Full Address including Plot/Appartment Name or
+                            No, floor
                             No & House No') }}
                             <div class="form-group">
                                 {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' =>
@@ -190,10 +290,62 @@ Welcome Home
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 <link rel="stylesheet" href="/css/validator/bootstrapValidator.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
 
 <style>
-    .has-error .help-block {
+    .has-error .help-block,
+    .dz-error-message {
         color: red !important;
+    }
+
+    .dz-container {
+        border: 2px dashed #007bff;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+
+    .dz-success-mark,
+    .dz-error-mark {
+        display: none !important
+    }
+
+    .dz-container .dz-message {
+        font-size: 1.2em;
+        color: #007bff;
+    }
+
+    .dz-preview-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dz-preview img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .img-preview {
+        display: none;
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        max-width: 100%;
+    }
+
+    .dz-success-icon {
+        color: green;
+        font-size: 2em;
+        display: none;
+        margin-top: 10px;
     }
 </style>
 @endsection
@@ -210,6 +362,8 @@ Welcome Home
 
 
 <script src="/js/validator/bootstrapValidator.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
 
 
 
@@ -359,7 +513,141 @@ Welcome Home
                 });
             });
         }
+
+        Dropzone.autoDiscover = false;
     $(document).ready(function() {
+
+      // Get the CSRF token from the meta tag
+var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+var dropzoneDiv = new Dropzone("#dropzoneDiv", {
+    url: "/book/upload-image", // Change this to your upload URL
+    method: "post",
+    acceptedFiles: "image/*",
+    maxFiles: 1,
+    addRemoveLinks: true,
+    clickable: true,
+    headers: {
+        'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+    },
+    init: function() {
+        this.on("success", function(file, response) {
+            // Handle the response from the server
+            console.log(response);
+
+            // Show the green check icon
+            var checkIcon = document.createElement('div');
+            checkIcon.className = 'dz-success-icon';
+            checkIcon.style.position = 'absolute';
+            checkIcon.style.top = '10px';
+            checkIcon.style.right = '10px';
+            checkIcon.style.width = '24px';
+            checkIcon.style.height = '24px';
+            checkIcon.style.backgroundColor = 'green';
+            checkIcon.style.borderRadius = '50%';
+            checkIcon.style.display = 'flex';
+            checkIcon.style.justifyContent = 'center';
+            checkIcon.style.alignItems = 'center';
+            checkIcon.style.color = 'white';
+            checkIcon.innerHTML = '✔';
+            file.previewElement.appendChild(checkIcon);
+
+            // Store the file path in the hidden input
+            $('#chosen_path').val(response.file_path);
+        });
+
+        this.on("error", function(file, errorMessage, xhr) {
+            // Display the error message
+            var errorIcon = document.createElement('div');
+            errorIcon.className = 'dz-error-icon';
+            errorIcon.style.position = 'absolute';
+            errorIcon.style.top = '10px';
+            errorIcon.style.right = '10px';
+            errorIcon.style.width = '24px';
+            errorIcon.style.height = '24px';
+            errorIcon.style.backgroundColor = 'red';
+            errorIcon.style.borderRadius = '50%';
+            errorIcon.style.display = 'flex';
+            errorIcon.style.justifyContent = 'center';
+            errorIcon.style.alignItems = 'center';
+            errorIcon.style.color = 'white';
+            errorIcon.innerHTML = '✖';
+            file.previewElement.appendChild(errorIcon);
+
+            // Create and display error message
+            var errorMsg = document.createElement('div');
+            errorMsg.className = 'dz-error-message';
+            errorMsg.style.color = 'red';
+            errorMsg.style.marginTop = '10px';
+            errorMsg.innerText = errorMessage;
+            file.previewElement.appendChild(errorMsg);
+        });
+
+        this.on("addedfile", function(file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#photoPreview').attr('src', e.target.result).show();
+                $('.dz-success-icon').remove(); // Remove any existing success icon
+                $('.dz-error-icon').remove(); // Remove any existing error icon
+                $('.dz-error-message').remove(); // Remove any existing error message
+            };
+            reader.readAsDataURL(file);
+
+            // Remove file name and size
+            $(file.previewElement).find('.dz-filename').remove();
+            $(file.previewElement).find('.dz-size').remove();
+
+            // Center align the preview element
+            $(file.previewElement).css({
+                'display': 'flex',
+                'flexDirection': 'column',
+                'alignItems': 'center',
+                'textAlign': 'center'
+            });
+
+            // Change the remove link color to light red
+            $(file.previewElement).find('.dz-remove').css({
+                'color': '#ff6666',
+                'fontWeight': 'bold'
+            });
+
+            // Create and display progress bar
+            var progressBar = document.createElement('div');
+            progressBar.className = 'dz-progress-bar';
+            progressBar.style.width = '100%';
+            progressBar.style.height = '5px';
+            progressBar.style.backgroundColor = '#4caf50';
+            progressBar.style.position = 'absolute';
+            progressBar.style.bottom = '0';
+            file.previewElement.appendChild(progressBar);
+        });
+
+        this.on("uploadprogress", function(file, progress) {
+            // Update the progress bar width
+            $(file.previewElement).find('.dz-progress-bar').css({
+                'width': progress + '%'
+            });
+        });
+
+        this.on("removedfile", function(file) {
+            $('#photoPreview').hide();
+            $('.dz-success-icon').remove(); // Remove the success icon
+            $('.dz-error-icon').remove(); // Remove the error icon
+            $('.dz-error-message').remove(); // Remove the error message
+            $('#chosen_path').val(''); // Clear the hidden input
+        });
+    }
+});
+
+        $('#bookNotInListCheckbox').change(function(){
+            if($(this).is(':checked')){
+               $('.inventories_select').hide();
+               $('.manual_upload').show();
+            } else {
+               $('.inventories_select').show();
+               $('.manual_upload').hide();
+            }
+        });
 
           $('.user_form')
                 .bootstrapValidator({
@@ -373,6 +661,7 @@ Welcome Home
 
         $('#book_title').select2();
         $('#level').select2();
+        $('#exchange_book_level').select2();
         var $input = $('#book_title');
         var $suggestions = $('#autocomplete-suggestions');
 

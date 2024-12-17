@@ -10,21 +10,21 @@ Welcome Home
     <div class="row mt-20">
         @foreach($books as $book)
         @php
-        $photoPath = public_path($book->front_photo);
-        $photoUrl = file_exists($photoPath) ? asset($book->front_photo) : asset('images/no_image.png');
+        $photoPath = public_path($book->front_image);
+        $photoUrl = file_exists($photoPath) ? asset($book->front_image) : asset('images/no_image.png');
         @endphp
         <div class="product-plr-1 col-md-3 col-sm-6 col-12">
             <div class="single-product-wrap mb-60">
                 <div class="product-img product-img-zoom mb-15">
                     <a href="/book/redeem/{{$book->id}}">
-                        <img src="{{$photoUrl}}" alt="{{$book->book_name}}">
+                        <img src="{{$photoUrl}}" alt="{{$book->book_title}}">
                     </a>
                 </div>
                 <div class="product-content-wrap-3">
                     <div class="product-content-categories">
                         <a class="blue" href="/book/redeem/{{$book->id}}">{{$book->level_name}}</a>
                     </div>
-                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}}</a></h3>
+                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_title}}</a></h3>
                     <div class="product-price-4">
                         <span>{{$book->required_points}} <span style="font-size: 12px"> points required</span></span>
                     </div>
@@ -33,7 +33,7 @@ Welcome Home
                     <div class="product-content-categories">
                         <a class="blue" href="/book/redeem/{{$book->id}}">{{$book->level_name}}</a>
                     </div>
-                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_name}}</a></h3>
+                    <h3><a class="blue" href="/book/redeem/{{$book->id}}">{{$book->book_title}}</a></h3>
                     <div class="product-price-4">
                         <span>{{$book->required_points}} <span style="font-size: 12px"> points required</span></span>
                     </div>

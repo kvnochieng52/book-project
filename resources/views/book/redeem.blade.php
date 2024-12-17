@@ -18,15 +18,15 @@ Welcome Home
 
 
                         @php
-                        $photoPath = public_path($book->front_photo);
-                        $photoUrl = file_exists($photoPath) ? asset($book->front_photo) : asset('images/no_image.png');
+                        $photoPath = public_path($book->front_image);
+                        $photoUrl = file_exists($photoPath) ? asset($book->front_image) : asset('images/no_image.png');
                         @endphp
                         <div class="col-md-4">
                             <img src="{{$photoUrl}}" alt="" style="width:100%">
                         </div>
 
                         <div class="col-md-8">
-                            <h3>{{$book->book_name}}</h3>
+                            <h3>{{$book->book_title}}</h3>
                             <p><strong>Book Level</strong>: {{$book->level_name}} </p>
                             {{-- <p><strong>Book Edition</strong>: {{$book->edition_name}} </p> --}}
                             <p><strong>Condition</strong>: Used</p>

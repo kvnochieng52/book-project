@@ -9,6 +9,11 @@
                     PENDING DELIVERY</strong></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="/reports/book-report"><strong><i class="fas fa-file"></i>
+                    REPORTS</strong></a>
+        </li>
+
 
 
     </ul>

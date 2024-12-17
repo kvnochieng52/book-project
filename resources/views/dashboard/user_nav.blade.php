@@ -37,7 +37,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link btn btn-sm btn-secondary" href="/dashboard/mini-search"
+            <a class="nav-link btn btn-sm btn-secondary" href="/dashboard/your-orders"
                 style="border-radius: 0;"><strong><i class="fas fa-list"></i> Orders</strong></a>
         </li>
 

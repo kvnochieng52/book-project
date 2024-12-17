@@ -19,6 +19,7 @@ Welcome Home
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Book ID</th>
                                 <th>Photo</th>
                                 <th>Book Name</th>
                                 <th>Level</th>
@@ -32,10 +33,11 @@ Welcome Home
                             @foreach ($orders as $key=>$order)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td><img src="/{{$order->front_photo}}" alt="Thumbnail 1" class="img-thumbnail"
+                                <td>{{$order->book_id}}</td>
+                                <td><img src="/{{$order->front_image}}" alt="Thumbnail 1" class="img-thumbnail"
                                         width="60">
                                 </td>
-                                <td>{{$order->book_name}}</td>
+                                <td>{{$order->book_title}}</td>
                                 <td>{{$order->level_name}}</td>
                                 <td>{{$order->edition_name}}</td>
                                 <td>{{$order->order_status_name}}</td>

@@ -46,6 +46,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/redeem/{id}', [App\Http\Controllers\BookController::class, 'redeemBook'])->name('redeem-book');
         Route::post('/store-book', [App\Http\Controllers\BookController::class, 'storeBook'])->name('store-book');
         Route::post('/redeem-process', [App\Http\Controllers\BookController::class, 'redeemProcess'])->name('redeem-process');
+
+        Route::post('/upload-image', [App\Http\Controllers\BookController::class, 'uploadImage'])->name('upload-image');
+
+
+        Route::get('/update-books', [App\Http\Controllers\BookController::class, 'updateBooks'])->name('update-books');
     });
 
     Route::prefix('rider-dashboard')->group(function () {

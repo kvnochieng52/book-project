@@ -25,16 +25,18 @@ class Book extends Model
             'book_statuses.color_code as status_color_code',
             'swap_statuses.swap_status_name',
             'swap_statuses.color_code as swap_status_color_code',
-            'book_editions.edition_name',
+            // 'book_editions.edition_name',
             'CREATED_BY_USER_JOIN.name as created_by_name',
             'CREATED_BY_USER_JOIN.email as created_by_email',
             'COLLECTION_RIDER_USER_JOIN.name as collection_rider_name',
             'CREATED_BY_USER_JOIN.telephone as created_by_telephone',
+            'book_conditions.condition_name',
         ])
             ->leftJoin('book_inventories', 'books.book_id', 'book_inventories.id')
-            ->leftJoin('book_levels', 'book_inventories.level_id', 'book_levels.id')
-            ->leftJoin('book_editions', 'book_inventories.edition_id', 'book_editions.id')
+            ->leftJoin('book_levels', 'books.book_level_id', 'book_levels.id')
+            // ->leftJoin('book_editions', 'book_inventories.edition_id', 'book_editions.id')
             ->leftJoin('book_statuses', 'books.status_id', 'book_statuses.id')
+            ->leftJoin('book_conditions', 'books.condition_id', 'book_conditions.id')
             ->leftJoin('swap_statuses', 'books.swap_status_id', 'swap_statuses.id')
             ->leftJoin('users AS CREATED_BY_USER_JOIN', 'books.created_by', 'CREATED_BY_USER_JOIN.id')
             ->leftJoin('users AS COLLECTION_RIDER_USER_JOIN', 'books.collection_rider_id', '=', 'COLLECTION_RIDER_USER_JOIN.id');
