@@ -298,9 +298,7 @@ Welcome Home
         color: red !important;
     }
 
-
-    input {
-
+    input[type="checkbox"] {
         height: unset !important;
         width: unset !important;
     }
