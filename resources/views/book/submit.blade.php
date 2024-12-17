@@ -181,7 +181,7 @@ Welcome Home
 
 
                 <h4 class="text-primary">Book for Exchange</h4>
-                <p>Specify the books you want to exchange comma separated, Include the book Title and Level</p>
+                <p>Specify the books you want for exchange comma separated, Include the book Title and Level</p>
 
 
                 <div class="row">
@@ -192,7 +192,7 @@ Welcome Home
                         {{ Form::label('exchange_books', 'Exchange Books') }}
                         <div class="form-group">
                             {{ Form::textarea('exchange_books', null, ['class' => 'form-control', 'placeholder' =>
-                            'Enter the Exchange Books, comma separated', 'style'=>'height:90px']) }}
+                            'Enter the Exchange Books, comma separated', 'style'=>'height:90px', 'required'=>true]) }}
                         </div>
                     </div>
 
