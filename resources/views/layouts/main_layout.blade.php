@@ -30,8 +30,20 @@
 
 
 
+
+
     @yield('css-scripts')
 
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFECCD2NK0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-BFECCD2NK0');
+    </script>
     <!-- Start of LiveChat (www.livechat.com) code -->
 
 </head>

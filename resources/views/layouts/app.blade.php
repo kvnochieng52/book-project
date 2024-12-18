@@ -26,7 +26,20 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
+
     @yield('css-scripts')
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFECCD2NK0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-BFECCD2NK0');
+    </script>
+
+
 </head>
 
 <body class=" hold-transition layout-top-nav">
