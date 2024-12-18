@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 @section('title')
-Welcome Home
+{{$book->book_title}}
 @endsection
 
 @section('content')
