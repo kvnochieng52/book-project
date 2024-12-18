@@ -262,20 +262,20 @@ class BookController extends Controller
         $bookQuery = Book::query();
 
 
-        dd($bookTitle, $level);
+        if (!empty($bookTitle)) {
+            $bookQuery->where('book_title', 'LIKE', "%{$bookTitle}%");
+        }
+        if (!empty($level)) {
+            if (is_numeric($level)) {
+                $bookQuery->where('book_level_id', $level);
+            } else {
+                $bookQuery->where('level_name', 'LIKE', "%{$level}%");
+            }
+        }
 
-        $bookQuery->where(function ($query) use ($level, $bookTitle) {
-            if (!empty($bookTitle)) {
-                $query->where('book_title', 'LIKE', "%{$bookTitle}%");
-            }
-            if (!empty($level)) {
-                if (is_numeric($level)) {
-                    $query->where('book_level_id', $level);
-                } else {
-                    $query->where('level_name', 'LIKE', "%{$level}%");
-                }
-            }
-        });
+        // $bookQuery->where(function ($query) use ($level, $bookTitle) {
+
+        // });
 
         $bookQuery->where('books.status_id', BookStatus::APPROVED);
         $data = $bookQuery->get();
