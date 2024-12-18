@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 @section('title')
-{{$book->book_title}}
+{{$book->book_title}}-{{$book->level_name}}
 @endsection
 
 @section('content')
