@@ -1,4 +1,3 @@
-<!-- resources/views/partials/book_search_form.blade.php -->
 <div style="padding: 8px; border:1px solid #eee; background-color:#f8f8f8; margin-top:10px; border-radius:8px">
     {!! Form::open([
     'action' => 'App\Http\Controllers\BookController@search',
@@ -15,6 +14,10 @@
                 </label>
                 <input type="text" id="book-search" class="form-control" placeholder="Search for a book" name="title"
                     value="{{ request()->get('title') }}" required>
+                <!-- Spinner icon -->
+                <div id="autocomplete-spinner" style="display:none;">
+                    <i class="fas fa-spinner fa-spin"></i> Loading Results...
+                </div>
             </div>
         </div>
     </div>
@@ -45,8 +48,11 @@
         $('#toggle-search-form').click(function() {
           $('#search-form').toggle();
         });
+
         $("#book-search").autocomplete({
             source: function(request, response) {
+                // Show spinner
+                $('#autocomplete-spinner').show();
                 $.ajax({
                     url: "/autocomplete",
                     dataType: "json",
@@ -54,6 +60,8 @@
                         q: request.term
                     },
                     success: function(data) {
+                        // Hide spinner
+                        $('#autocomplete-spinner').hide();
                         response($.map(data, function(item) {
                             return {
                                 label: item.title,
@@ -63,6 +71,10 @@
                                 subtitle: item.subtitle
                             };
                         }));
+                    },
+                    error: function() {
+                        // Hide spinner
+                        $('#autocomplete-spinner').hide();
                     }
                 });
             },
