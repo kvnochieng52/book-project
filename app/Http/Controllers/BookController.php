@@ -256,20 +256,21 @@ class BookController extends Controller
 
     public function search(Request $request)
     {
-
-
-        $level = $request['levels'];
-        $bookTitle = $request['book_title'];
-
+        $level = $request['level'];
+        $bookTitle = $request['title'];
 
         $bookQuery = Book::query();
 
         $bookQuery->where(function ($query) use ($level, $bookTitle) {
             if (!empty($bookTitle)) {
-                $query->where('books.book_id', $bookTitle);
+                $query->where('book_title', 'LIKE', "%{$bookTitle}%");
             }
             if (!empty($level)) {
-                $query->orWhere('book_levels.id', $level);
+                if (is_numeric($level)) {
+                    $query->where('book_level_id', $level);
+                } else {
+                    $query->where('level_name', 'LIKE', "%{$level}%");
+                }
             }
         });
 
@@ -325,5 +326,27 @@ class BookController extends Controller
 
             echo $book->book_id . " ----- " . $bookDetails->book_name . "<br/>";
         }
+    }
+
+
+
+    public function autoComplete(Request $request)
+    {
+        $search = $request->input('q');
+        $books = Book::query()->where('book_title', 'LIKE', "%{$search}%")
+            ->orWhere('level_name', 'LIKE', "%{$search}%")
+            ->get();
+
+        $results = [];
+        foreach ($books as $book) {
+            $results[] = [
+                'id' => $book->id,
+                'title' => $book->book_title,
+                'subtitle' => $book->level_name,
+                'thumbnail' => asset($book->front_image)
+            ];
+        }
+
+        return response()->json($results);
     }
 }

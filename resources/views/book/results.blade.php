@@ -6,17 +6,18 @@ Welcome Home
 @section('content')
 
 <div class="slider-area pt-30">
-
-
-
-
     <div class="container">
-
-        @include('book._search_form')
+        <div>
+            <button id="toggle-search-form" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Show or Hide
+                Search Form</button>
+            <div id="search-form" style="display: none;">
+                @include('book._search_form')
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 mt-10">
                 <h3>Search Results</h3>
-                <p>{{count($books)}} Found</p>
+                <p>{{ count($books) }} Found</p>
                 <hr />
             </div>
         </div>
@@ -66,9 +67,7 @@ Welcome Home
             @endforeach
         </div>
     </div>
-
 </div>
-
 
 @endsection
 
@@ -81,32 +80,52 @@ Welcome Home
         width: 100%;
         height: auto;
         max-height: 280px;
-        /* Adjust the max-height as needed */
         object-fit: cover;
     }
 
-    /* @media (max-width: 768px) {
-        .product-plr-1 {
-            padding-left: 0;
-            padding-right: 0;
-        }
+    .ui-autocomplete {
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 1000;
+    }
 
-        .single-product-wrap {
-            margin-bottom: 30px;
-        }
-    } */
+    .ui-menu-item-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    }
+
+    .ui-menu-item-wrapper img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+
+    .ui-menu-item-wrapper .info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ui-menu-item-wrapper .title {
+        font-weight: bold;
+    }
 </style>
 @endsection
 
 @section('js-scripts')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-{{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
 
 <script>
     $(document).ready(function() {
+
+      
         $('.select2').select2();
-    
+
+       
     });
 </script>
 

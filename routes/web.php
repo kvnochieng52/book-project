@@ -24,6 +24,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/browse', [App\Http\Controllers\BookController::class, 'browse'])->name('browse');
 
 
+Route::get('/autocomplete', [App\Http\Controllers\BookController::class, 'autoComplete'])->name('autocomplete');
+
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('book/suggest', [App\Http\Controllers\BookController::class, 'suggestBook'])->name('suggest-book');
 Route::get('book/search', [App\Http\Controllers\BookController::class, 'search'])->name('search-book');
