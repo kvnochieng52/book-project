@@ -1,7 +1,7 @@
 @extends('layouts.main_layout')
 
 @section('title')
-Welcome Home
+Search Book
 @endsection
 
 @section('content')

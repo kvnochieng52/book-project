@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 @section('title')
-Welcome Home
+Welcome to Kitabu Swap
 @endsection
 
 @section('content')

@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 @section('title')
-Welcome Home
+Submit Book
 @endsection
 
 @section('content')
