@@ -57,7 +57,7 @@
                         response($.map(data, function(item) {
                             return {
                                 label: item.title,
-                                value: item.id,
+                                value: item.title,
                                 thumbnail: item.thumbnail,
                                 title: item.title,
                                 subtitle: item.subtitle
