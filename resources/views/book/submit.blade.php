@@ -355,15 +355,14 @@ Submit Book
 </style>
 @endsection
 
+
 @section('js-scripts')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 {{-- <script src="{{ asset('js/jquery-ui.min.js')}}"></script> --}}
 
 
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1p4HNRQsVDYRlXzTaXXAhJiIDU895JyE&libraries=places&callback=initMap"
-    async defer></script>
+
 
 
 <script src="/js/validator/bootstrapValidator.min.js"></script>
@@ -709,6 +708,10 @@ var dropzoneDiv = new Dropzone("#dropzoneDiv", {
 
   });
 </script>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1p4HNRQsVDYRlXzTaXXAhJiIDU895JyE&libraries=places&callback=initMap"
+    async defer></script>
 
 
 @endsection

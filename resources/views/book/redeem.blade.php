@@ -317,4 +317,9 @@
     })
 </script>
 
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1p4HNRQsVDYRlXzTaXXAhJiIDU895JyE&libraries=places&callback=initMap"
+    async defer></script>
+
 @endsection
