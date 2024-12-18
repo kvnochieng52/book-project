@@ -256,33 +256,52 @@ class BookController extends Controller
 
     public function search(Request $request)
     {
-        $level = $request['level'];
+        $level = $request['levels'];
         $bookTitle = $request['title'];
 
-        $bookQuery = Book::query();
 
+
+        $bookQuery = Book::query();
 
         if (!empty($bookTitle)) {
             $bookQuery->where('book_title', 'LIKE', "%{$bookTitle}%");
         }
         if (!empty($level)) {
+
+
             if (is_numeric($level)) {
+
                 $bookQuery->where('book_level_id', $level);
             } else {
                 $bookQuery->where('level_name', 'LIKE', "%{$level}%");
             }
         }
 
-        // $bookQuery->where(function ($query) use ($level, $bookTitle) {
-
-        // });
-
         $bookQuery->where('books.status_id', BookStatus::APPROVED);
-        $data = $bookQuery->get();
+
+        $data = $bookQuery->paginate(20)->withQueryString();
 
         return view('book.results')->with([
             'books' => $data,
         ]);
+
+
+
+
+        // $bookQuery->where(function ($query) use ($level, $bookTitle) {
+        //     if (!empty($bookTitle)) {
+        //         $query->where('book_title', 'LIKE', "%{$bookTitle}%");
+        //     }
+        //     if (!empty($level)) {
+        //         if (is_numeric($level)) {
+        //             $query->where('book_level_id', $level);
+        //         } else {
+        //             $query->where('level_name', 'LIKE', "%{$level}%");
+        //         }
+        //     }
+        // });
+
+        // $bookQuery->where('books.status_id', BookStatus::APPROVED)
     }
 
 
@@ -336,8 +355,11 @@ class BookController extends Controller
     public function autoComplete(Request $request)
     {
         $search = $request->input('q');
-        $books = Book::query()->where('book_title', 'LIKE', "%{$search}%")
-            ->orWhere('level_name', 'LIKE', "%{$search}%")
+
+        $books = Book::query()
+            ->where('book_title', 'LIKE', "%{$search}%")
+            ->where('books.status_id', BookStatus::APPROVED)
+            ->take(8)
             ->get();
 
         $results = [];

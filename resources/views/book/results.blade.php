@@ -67,6 +67,14 @@ Welcome Home
             @endforeach
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pagination-wrapper">
+                {{ $books->links() }}
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
