@@ -261,6 +261,9 @@ class BookController extends Controller
 
         $bookQuery = Book::query();
 
+
+        dd($bookTitle, $level);
+
         $bookQuery->where(function ($query) use ($level, $bookTitle) {
             if (!empty($bookTitle)) {
                 $query->where('book_title', 'LIKE', "%{$bookTitle}%");
